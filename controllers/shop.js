@@ -26,20 +26,6 @@ exports.getProduct = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
-
-
-exports.deleteProduct = (req, res, next) => {
-  const prodId = req.params.productId;
-  Product.deleteById(prodId)
-    .then(() => {
-      Cart.deleteProduct(prodId);
-      res.redirect('/products');
-    })
-    .catch(err => console.log(err));
-};
-
-
-
 exports.getIndex = (req, res, next) => {
   Product.fetchAll()
     .then(([rows, fieldData]) => {
@@ -80,8 +66,6 @@ exports.postCart = (req, res, next) => {
   });
   res.redirect('/cart');
 };
-
-
 
 exports.postCartDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
